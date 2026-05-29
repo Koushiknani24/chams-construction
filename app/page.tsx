@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "CHAMS Construction — Singapore Commercial, Interior & Renovation Works",
   description:
-    "Singapore construction partner trusted by JTC, LTA, HDB, PUB and Micron. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. BCA-registered, ISO 45001:2018 certified.",
+    "Singapore construction partner trusted by JTC, LTA, HDB, PUB and semiconductor fabs. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. BCA-registered, ISO 45001:2018 certified.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };

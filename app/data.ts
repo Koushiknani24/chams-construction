@@ -711,31 +711,31 @@ export const servicesTree: ServiceCategoryNode[] = [
         tagline: "Custom furniture, cabinets, doors and partitions",
         summary:
           "Bespoke carpentry for homes, offices and retail — custom furniture, fitted cabinets, hinged and sliding doors, and timber-framed partitions, designed to drawing and fabricated in-house.",
-        cover: "/services/interior/interior-works/joinery-carpentry.png",
+        cover: "/services/interior/carpentry-works/custom-furniture.png",
         essentials: [
           {
             slug: "custom-furniture",
             name: "Custom Furniture",
             text: "Tables, benches, shelving and feature pieces built to spec — material, joinery and finish matched to the interior.",
-            image: "/services/interior/interior-works/joinery-carpentry.png",
+            image: "/services/interior/carpentry-works/custom-furniture.png",
           },
           {
             slug: "cabinets",
             name: "Cabinets",
             text: "Fitted kitchen, wardrobe and storage cabinets — frame, doors, hardware and finish installed plumb and aligned.",
-            image: "/services/interior/interior-works/joinery-carpentry.png",
+            image: "/services/interior/carpentry-works/cabinets.png",
           },
           {
             slug: "doors",
             name: "Doors",
             text: "Hinged, sliding and pocket doors fabricated and hung — frames trued, ironmongery fitted, finish coordinated with adjoining works.",
-            image: "/services/interior/interior-works/joinery-carpentry.png",
+            image: "/services/interior/carpentry-works/doors.png",
           },
           {
             slug: "partitions",
             name: "Partitions",
             text: "Timber-framed partitions for studies, dressing rooms and meeting rooms — boxed, clad and finished to drawing.",
-            image: "/services/interior/interior-works/wall-partitions.png",
+            image: "/services/interior/carpentry-works/partitions.png",
           },
         ],
       },
@@ -745,25 +745,25 @@ export const servicesTree: ServiceCategoryNode[] = [
         tagline: "Partitions, doors and façades in glass and aluminium",
         summary:
           "Glazed partitions, aluminium-framed doors and façade systems for offices, retail and residential interiors — measured, fabricated and installed with finished joinery tolerances.",
-        cover: "/services/interior/interior-works/wall-partitions.png",
+        cover: "/services/interior/glass-aluminium/cover.png",
         essentials: [
           {
             slug: "partitions",
             name: "Partitions",
             text: "Framed and frameless glass partitions with aluminium profiles — clear, frosted or laminated panels installed to acoustic and fire-rating specs.",
-            image: "/services/interior/interior-works/wall-partitions.png",
+            image: "/services/interior/glass-aluminium/partitions.png",
           },
           {
             slug: "doors",
             name: "Doors",
             text: "Aluminium-framed glass doors — hinged, sliding and pivot — with closers, locks and accessories matched to the partition system.",
-            image: "/services/interior/interior-works/wall-partitions.png",
+            image: "/services/interior/glass-aluminium/doors.png",
           },
           {
             slug: "facades",
             name: "Façades",
             text: "Aluminium curtain-wall and storefront systems — glazing units, gaskets and weatherproofing installed for clean, weathertight façades.",
-            image: "/services/interior/interior-works/cover.png",
+            image: "/services/interior/glass-aluminium/facades.png",
           },
         ],
       },
@@ -773,31 +773,31 @@ export const servicesTree: ServiceCategoryNode[] = [
         tagline: "Tiles, vinyl, marble and timber flooring",
         summary:
           "Flooring scope for offices, retail and homes — tile, vinyl, marble and timber floors laid over levelled, prepared substrates with clean perimeter trims.",
-        cover: "/services/interior/interior-works/flooring.png",
+        cover: "/services/interior/flooring-installation/cover.png",
         essentials: [
           {
             slug: "tiles",
             name: "Tiles",
             text: "Ceramic, porcelain and stone tile flooring — set on adhesive or screed, grouted and sealed with clean cuts at perimeters and services.",
-            image: "/services/interior/interior-works/flooring.png",
+            image: "/services/interior/flooring-installation/tiles.png",
           },
           {
             slug: "vinyl",
             name: "Vinyl",
             text: "Sheet and LVT vinyl flooring — laid over prepared substrate with welded or click joints for high-traffic commercial floors.",
-            image: "/services/interior/interior-works/flooring.png",
+            image: "/services/interior/flooring-installation/vinyl.png",
           },
           {
             slug: "marble",
             name: "Marble",
             text: "Marble and natural-stone slabs installed and polished — set on screed beds with mitred edges and skirting matched to the floor.",
-            image: "/services/interior/interior-works/flooring.png",
+            image: "/services/interior/flooring-installation/marble.png",
           },
           {
             slug: "timber",
             name: "Timber",
             text: "Engineered and solid timber floors — laid on battens, screed or moisture barrier with expansion gaps and skirting trims.",
-            image: "/services/interior/interior-works/flooring.png",
+            image: "/services/interior/flooring-installation/timber.png",
           },
         ],
       },
@@ -807,31 +807,31 @@ export const servicesTree: ServiceCategoryNode[] = [
         tagline: "Soft strip, structural demolition and full reinstatement",
         summary:
           "Internal demolition for offices, retail and homes — from soft strip-out of finishes to structural removal — followed by reinstatement of walls, finishes and services so the space is ready for the next fit-out.",
-        cover: "/services/interior/cement-plastering/repair-patching.png",
+        cover: "/services/interior/demolition-reinstatement/cover.png",
         essentials: [
           {
             slug: "soft-demolition",
             name: "Soft Demolition",
             text: "Strip-out of finishes, partitions, ceilings, joinery and floor coverings — non-structural removal with services isolation.",
-            image: "/services/interior/cement-plastering/repair-patching.png",
+            image: "/services/interior/demolition-reinstatement/soft-demolition.png",
           },
           {
             slug: "structural-demolition",
             name: "Structural Demolition",
             text: "Controlled removal of structural walls, slabs and openings — engineered, propped and executed under supervision.",
-            image: "/services/interior/cement-plastering/repair-patching.png",
+            image: "/services/interior/demolition-reinstatement/structural-demolition.png",
           },
           {
             slug: "debris-removal",
             name: "Debris Removal & Disposal",
             text: "Bagging, hauling and disposal of demolition waste — site cleared, sorted and removed within agreed access windows.",
-            image: "/services/interior/cement-plastering/repair-patching.png",
+            image: "/services/interior/demolition-reinstatement/debris-removal.png",
           },
           {
             slug: "reinstatement",
             name: "Reinstatement Works",
             text: "Reinstatement of walls, floors, ceilings and services to a clean handover state — ready for the next fit-out or lease handback.",
-            image: "/services/interior/cement-plastering/wall-plastering.png",
+            image: "/services/interior/demolition-reinstatement/reinstatement.png",
           },
         ],
       },
@@ -852,7 +852,7 @@ export const featuredServices = [
   "Manpower Supply",
 ];
 
-// Featured client projects (real Singapore statutory boards + Micron)
+// Featured client projects (Singapore statutory boards + semiconductor fabs)
 // Used by /our-work page for the immersive scroll showcase.
 export const featuredProjects: {
   index: string;
@@ -886,7 +886,7 @@ export const featuredProjects: {
       "On-site engineering support for industrial expansion",
     ],
     summary:
-      "Continuous support for JTC's industrial estates — reinforcement, structural access and integrated civil works delivered alongside live petrochemical and semiconductor neighbours.",
+      "Continuous support for JTC's industrial projects — reinforcement, structural access and integrated civil works delivered alongside live petrochemical and semiconductor neighbours.",
     image: "/our-work/jtcWorks.png",
     imageAlt: "CHAMS crew laying reinforcement at a JTC Jurong Island industrial site at sunset",
   },
@@ -949,18 +949,18 @@ export const featuredProjects: {
       "Reservoir, tank & water treatment infrastructure",
     ],
     summary:
-      "Heavy-civil water works for PUB — pipeline, sewerage, drainage and flood mitigation projects executed across waterfront and inland sites, including marquee Marina Bay infrastructure.",
+      "Heavy-civil water works for PUB — pipeline, sewerage, drainage and flood mitigation projects across waterfront and inland sites, including marquee Marina Bay infrastructure.",
     image: "/our-work/PUBworks.png",
     imageAlt: "CHAMS excavator and crew on a PUB water-infrastructure site facing Marina Bay Sands",
   },
   {
     index: "05",
-    client: "Micron",
-    fullName: "Micron Semiconductors",
+    client: "Semiconductor Projects",
+    fullName: "Semiconductor Fabrication Facilities",
     tagline: "Reliable commercial maintenance",
-    title: "Semiconductor fab",
+    title: "Semiconductor",
     italic: "maintenance works.",
-    location: "Micron Singapore fab",
+    location: "Singapore",
     year: "Ongoing",
     sector: "Commercial / M&E",
     scope: [
@@ -970,9 +970,9 @@ export const featuredProjects: {
       "General building maintenance & rectification",
     ],
     summary:
-      "Ongoing commercial M&E maintenance at Micron's Singapore semiconductor fab — mechanical, electrical, HVAC and lighting works delivered on tightly controlled mission-critical schedules.",
-    image: "/our-work/micronWorks.png",
-    imageAlt: "CHAMS maintenance team approaching the Micron Semiconductors fab in Singapore",
+      "Ongoing commercial M&E maintenance for semiconductor fabrication facilities in Singapore — mechanical, electrical, HVAC and lighting works delivered on tightly controlled mission-critical schedules.",
+    image: "/our-work/semiconductorWorks.png",
+    imageAlt: "CHAMS maintenance team approaching a semiconductor fab in Singapore",
   },
 ];
 

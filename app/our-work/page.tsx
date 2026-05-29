@@ -8,9 +8,9 @@ import {
 } from "../components/Site";
 
 export const metadata: Metadata = {
-  title: "Our Work — JTC · LTA · HDB · PUB · Micron Projects in Singapore",
+  title: "Our Work — JTC · LTA · HDB · PUB · Semiconductor Projects in Singapore",
   description:
-    "Selected CHAMS Construction case studies — JTC industrial infrastructure, LTA roads and bridges, HDB estate works, PUB water and drainage, and Micron semiconductor fab maintenance across Singapore.",
+    "Selected CHAMS Construction case studies — JTC industrial infrastructure, LTA roads and bridges, HDB estate works, PUB water and drainage, and semiconductor fab maintenance across Singapore.",
   alternates: { canonical: "/our-work" },
   openGraph: { url: "/our-work", title: "Our Work — CHAMS Construction" },
 };
@@ -22,7 +22,7 @@ export default function OurWorkPage() {
         eyebrow="/ Selected work"
         title="Built for Singapore's"
         italic="statutory boards & industries."
-        text="Five live case studies — JTC, LTA, HDB, PUB and Micron — civil, infrastructure and commercial M&E works delivered by CHAMS Construction across the island."
+        text="Five live case studies — JTC, LTA, HDB, PUB and semiconductor fabs — civil, infrastructure and commercial M&E works delivered by CHAMS Construction across the island."
       />
 
       {/* Immersive scroll showcase — sticky client rail + parallax case studies */}
