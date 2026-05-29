@@ -25,7 +25,6 @@ import {
   roleOptions,
   workItems,
   stats,
-  heroStats,
   principles,
   featuredServices,
   sectorCards,
@@ -108,7 +107,10 @@ export function SplitHeadline({
       className={className}
     >
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom pr-[0.25em]">
+        // pb gives the overflow-hidden clip box room for descenders (g, y, p)
+        // so they aren't cut off. Padding (not negative margin) avoids any
+        // line overlap when a headline wraps on small screens.
+        <span key={i} className="inline-block overflow-hidden align-bottom pr-[0.25em] pb-[0.2em]">
           <motion.span variants={word} className="inline-block">
             {w}
           </motion.span>
@@ -335,11 +337,11 @@ export function VerifiedBadges({
 }) {
   const isHero = variant === "hero";
 
-  // Hero: frosted white chips so the transparent cert logos stay legible
-  // on the dark hero background. Each chip links out to the issuing body.
+  // Hero: plain cert logos (no background chip), each linking to the issuing
+  // body. Slight drop-shadow keeps them readable on the hero without a mask.
   if (isHero) {
     return (
-      <div className={`flex flex-wrap items-center gap-x-3 gap-y-3 ${className}`}>
+      <div className={`flex flex-wrap items-center gap-x-5 gap-y-3 ${className}`}>
         <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-white/65">
           / Certified
         </span>
@@ -349,7 +351,7 @@ export function VerifiedBadges({
           rel="noopener noreferrer"
           aria-label="Building and Construction Authority Singapore — registered contractor"
           title="Registered with the Building and Construction Authority (BCA) Singapore"
-          className="inline-flex items-center rounded-full bg-white/92 px-3 py-1.5 ring-1 ring-white/40 backdrop-blur transition hover:bg-white"
+          className="transition hover:opacity-80"
         >
           <img
             src="/verified-badges/BCA-certication.png"
@@ -358,7 +360,7 @@ export function VerifiedBadges({
             height={1024}
             loading="lazy"
             decoding="async"
-            className="block h-9 w-auto md:h-10"
+            className="block h-16 w-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)] md:h-20"
           />
         </a>
         <a
@@ -367,7 +369,7 @@ export function VerifiedBadges({
           rel="noopener noreferrer"
           aria-label="ISO 45001:2018 Occupational Health and Safety standard"
           title="Certified to ISO 45001:2018 — Occupational Health & Safety"
-          className="inline-flex items-center rounded-full bg-white/92 px-3 py-1.5 ring-1 ring-white/40 backdrop-blur transition hover:bg-white"
+          className="transition hover:opacity-80"
         >
           <img
             src="/verified-badges/tve-certification.png"
@@ -376,7 +378,7 @@ export function VerifiedBadges({
             height={1024}
             loading="lazy"
             decoding="async"
-            className="block h-9 w-auto md:h-10"
+            className="block h-16 w-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)] md:h-20"
           />
         </a>
       </div>
@@ -708,114 +710,109 @@ export function CtaImage() {
 // ─────────────────────────────────────────────────────────────
 export function HomeHero() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.12]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
 
   return (
     <section
       ref={ref}
-      className="relative isolate -mt-24 overflow-hidden bg-[var(--navy-deep)] md:-mt-28"
+      className="relative isolate -mt-24 overflow-hidden bg-[var(--paper)] md:-mt-28"
       style={{ minHeight: "100svh" }}
     >
-      {/* Background image — full-bleed and clearly visible */}
+      {/* Background image — fills the viewport (object-cover). Portrait crop
+          for mobile, landscape for desktop; soft fade-in, no overlay. */}
       <motion.div
-        style={{ y: bgY, scale: bgScale, backgroundImage: "url('/hero.png')" }}
-        className="absolute inset-0 z-0 bg-cover bg-[position:62%_center] bg-no-repeat"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ backgroundImage: "url('/hero-mobile.png')" }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:hidden"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ backgroundImage: "url('/hero1.png')" }}
+        className="absolute inset-0 z-0 hidden bg-cover bg-center bg-no-repeat md:block"
       />
 
-      {/* Cinematic gradients — anchor text/legibility without washing the image.
-          Bottom-up navy fade + left-side scrim, leaving the upper-right vivid. */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[var(--navy-deep)] via-[var(--navy-deep)]/35 to-[var(--navy-deep)]/10" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[var(--navy-deep)] via-[var(--navy-deep)]/72 to-transparent md:via-[var(--navy-deep)]/60" />
-      {/* Warm gold glow, top-left, for depth */}
-      <div className="pointer-events-none absolute -left-32 top-10 z-[1] h-[420px] w-[420px] rounded-full bg-[var(--gold)]/12 blur-[120px]" />
-
-      {/* Foreground */}
-      <motion.div style={{ y: contentY }} className="relative z-10 flex min-h-[100svh] flex-col">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-28 pb-16 md:px-10 md:pt-36 md:pb-20">
-          <div className="max-w-2xl lg:max-w-3xl">
-            <Reveal>
-              <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-[var(--gold)]" />
-                <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/75 md:text-[11px]">
-                  Singapore · BCA-registered contractor
-                </p>
-              </div>
-            </Reveal>
-            <h1 className="mt-6 md:mt-7">
-              <SplitHeadline
-                as="span"
-                text="Commercial & Interior"
-                className="font-display block text-[clamp(2.1rem,7vw,5rem)] leading-[1.0] tracking-tight text-white"
-              />
-              <SplitHeadline
-                as="span"
-                text="Construction in Singapore."
-                delay={0.25}
-                className="font-display-italic mt-1 block text-[clamp(2.1rem,7vw,5rem)] leading-[1.0] tracking-tight text-[var(--gold-warm)]"
-              />
-            </h1>
-            <Reveal delay={0.5}>
-              <p className="mt-6 max-w-xl text-sm leading-6 text-white/80 md:mt-7 md:text-lg md:leading-8">
-                Building landmarks with modern expertise — from industrial blasting, painting and
-                M&amp;E to interior fit-out, plastering and renovation. Built with discipline,
-                delivered on schedule across Singapore.
+      {/* Foreground — text sits in the bright sky zone of each image. On
+          mobile the CTAs stack and anchor to the bottom (justify-between);
+          on desktop they group under the text (justify-center). */}
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1400px] flex-col justify-between px-5 pt-28 pb-12 md:justify-center md:px-10 md:pb-24 md:pt-36">
+        {/* Top — eyebrow, headline, description */}
+        <div className="max-w-2xl lg:max-w-3xl">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-[var(--gold-deep)]" />
+              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[var(--navy)]/70 md:text-[11px]">
+                Commercial • Industrial • Interior
               </p>
-            </Reveal>
-            <Reveal delay={0.7}>
-              <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-9">
-                <Link
-                  href="/contact-us"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[var(--gold)] px-7 py-3.5 text-[12px] font-medium tracking-[0.2em] uppercase text-[var(--navy)] btn-shadow transition hover:bg-[var(--gold-warm)] sm:justify-start"
-                >
-                  Start a project
-                  <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-[12px] tracking-[0.2em] uppercase text-white backdrop-blur transition hover:border-white hover:bg-white hover:text-[var(--navy)] sm:justify-start"
-                >
-                  Explore services
-                  <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              </div>
-            </Reveal>
-            <Reveal delay={0.85}>
-              <VerifiedBadges variant="hero" className="mt-8 md:mt-9" />
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
+          <h1 className="mt-6 md:mt-7">
+            <SplitHeadline
+              as="span"
+              text="Luxury Execution"
+              className="font-display block text-[clamp(2.1rem,7vw,5rem)] leading-[1.05] tracking-tight text-[var(--navy)]"
+            />
+            <SplitHeadline
+              as="span"
+              text="for Modern Infrastructure."
+              delay={0.25}
+              className="font-display-italic mt-1 block text-[clamp(2.1rem,7vw,5rem)] leading-[1.05] tracking-tight text-[var(--gold-deep)]"
+            />
+          </h1>
+          <Reveal delay={0.5}>
+            <p className="mt-6 max-w-md text-base leading-7 text-[var(--ash)] md:mt-7 md:text-lg md:leading-8">
+              End-to-end construction and maintenance solutions for businesses that demand
+              reliability, efficiency, and exceptional workmanship.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Capability strip — anchors the hero with substance */}
-        <Reveal delay={0.9}>
-          <div className="relative z-10 border-t border-white/15 bg-[var(--navy-deep)]/40 backdrop-blur-sm">
-            <div className="mx-auto grid max-w-[1400px] grid-cols-2 md:grid-cols-4">
-              {heroStats.map(([k, v], i) => (
-                <div
-                  key={k}
-                  className={`px-5 py-5 md:px-8 md:py-7 ${
-                    i % 2 === 1 ? "border-l border-white/10" : ""
-                  } ${i >= 2 ? "border-t border-white/10 md:border-t-0" : ""} ${
-                    i > 0 ? "md:border-l md:border-white/10" : ""
-                  }`}
-                >
-                  <p className="font-mono text-[9px] tracking-[0.3em] uppercase text-[var(--gold)]/90">
-                    / {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <p className="mt-2 font-display text-lg leading-tight text-white md:text-2xl">
-                    {k}
-                  </p>
-                  <p className="mt-1 text-[11px] leading-snug text-white/55 md:text-xs">
-                    {v}
-                  </p>
-                </div>
-              ))}
+        {/* CTAs — stacked at the bottom on mobile, inline under text on desktop */}
+        <div className="mt-10 max-w-2xl lg:max-w-3xl md:mt-9">
+          <Reveal delay={0.7}>
+            <div className="flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center">
+              <Link
+                href="/contact-us"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[var(--gold)] px-5 py-3.5 text-[11px] font-medium tracking-[0.18em] uppercase text-[var(--navy)] btn-shadow transition hover:bg-[var(--gold-warm)] md:gap-3 md:px-7 md:text-[12px] md:tracking-[0.2em]"
+              >
+                Start a project
+                <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="/our-work"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-white/50 bg-white/30 px-5 py-3.5 text-[11px] tracking-[0.18em] uppercase text-[var(--navy)] shadow-[0_8px_30px_rgba(26,38,84,0.12)] backdrop-blur-md transition hover:border-white/70 hover:bg-white/55 md:gap-3 md:px-7 md:text-[12px] md:tracking-[0.2em]"
+              >
+                Our Work
+                <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
-          </div>
-        </Reveal>
-      </motion.div>
+          </Reveal>
+          <Reveal delay={0.85}>
+            <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[var(--ash)] md:mt-7">
+              <span className="font-mono tracking-[0.22em] uppercase text-[var(--navy)]/55">/ Certified</span>
+              <a
+                href="https://www.bca.gov.sg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-[var(--gold-deep)]/40 underline-offset-4 transition hover:text-[var(--navy)]"
+              >
+                BCA-registered contractor
+              </a>
+              <span aria-hidden>·</span>
+              <a
+                href="https://www.iso.org/iso-45001-occupational-health-and-safety.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-[var(--gold-deep)]/40 underline-offset-4 transition hover:text-[var(--navy)]"
+              >
+                ISO 45001:2018 certified
+              </a>
+            </p>
+          </Reveal>
+        </div>
+      </div>
     </section>
   );
 }
