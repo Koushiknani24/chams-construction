@@ -79,12 +79,14 @@ export function SplitHeadline({
   text,
   className = "",
   delay = 0,
+  as = "h1",
 }: {
   text: string;
   className?: string;
   delay?: number;
+  as?: "h1" | "h2" | "span" | "div" | "p";
 }) {
-  const ref = useRef<HTMLHeadingElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-120px" });
   const words = text.split(" ");
   const variants: Variants = {
@@ -95,9 +97,10 @@ export function SplitHeadline({
     hidden: { y: "110%", opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
   };
+  const Comp = motion[as] as typeof motion.h1;
   return (
-    <motion.h1
-      ref={ref}
+    <Comp
+      ref={ref as React.RefObject<HTMLHeadingElement>}
       variants={variants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
@@ -110,7 +113,7 @@ export function SplitHeadline({
           </motion.span>
         </span>
       ))}
-    </motion.h1>
+    </Comp>
   );
 }
 
@@ -147,7 +150,7 @@ export function Header() {
                 alt="Chams Construction"
                 width={260}
                 height={174}
-                className="h-16 w-auto object-contain md:h-20"
+                className="h-27 w-auto object-contain md:h-30"
                 priority
               />
             </Link>
@@ -724,20 +727,24 @@ export function HomeHero() {
                   </p>
                 </div>
               </Reveal>
-              <div className="mt-5 md:mt-6">
+              <h1 className="mt-5 md:mt-6">
                 <SplitHeadline
-                  text="Building Landmarks"
+                  as="span"
+                  text="Commercial & Interior"
                   className="font-display block text-[clamp(1.85rem,6.5vw,4.5rem)] leading-[1.02] tracking-tight text-[var(--navy)]"
                 />
                 <SplitHeadline
-                  text="with Modern Expertise."
+                  as="span"
+                  text="Construction in Singapore."
                   delay={0.25}
                   className="font-display-italic mt-1 block text-[clamp(1.85rem,6.5vw,4.5rem)] leading-[1.02] tracking-tight text-[var(--gold-deep)]"
                 />
-              </div>
+              </h1>
               <Reveal delay={0.5}>
                 <p className="mt-6 max-w-lg text-sm leading-6 text-[var(--navy)]/90 md:mt-7 md:text-lg md:leading-7">
-                  Commercial and interior construction, delivered with discipline across Singapore.
+                  Building landmarks with modern expertise — from industrial blasting, painting and
+                  M&amp;E to interior fit-out, plastering and renovation. Built with discipline,
+                  delivered on schedule across Singapore.
                 </p>
               </Reveal>
               <Reveal delay={0.7}>

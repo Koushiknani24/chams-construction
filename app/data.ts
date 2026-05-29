@@ -852,6 +852,42 @@ export const featuredServices = [
   "Manpower Supply",
 ];
 
+// Home-page FAQ — answers common search queries and powers the
+// FAQPage JSON-LD for rich results. Keep questions natural-language
+// (how people actually search) and answers concise and factual.
+export const homeFaqs: { question: string; answer: string }[] = [
+  {
+    question: "What construction services does CHAMS Construction offer in Singapore?",
+    answer:
+      "CHAMS Construction is a Singapore-based commercial and interior construction company offering blasting and protective painting, waterproofing, epoxy flooring, electrical works, plumbing and sanitary works, interior fit-out and renovation, cement plastering, carpentry, glass and aluminium works, flooring installation, demolition and reinstatement, and skilled manpower supply.",
+  },
+  {
+    question: "Is CHAMS Construction a BCA-registered contractor?",
+    answer:
+      "Yes. CHAMS Construction is a BCA-registered contractor in Singapore and is ISO 45001:2018 certified for occupational health and safety, so every project is delivered to recognised safety and quality standards.",
+  },
+  {
+    question: "Which areas in Singapore does CHAMS Construction serve?",
+    answer:
+      "CHAMS Construction serves clients island-wide across Singapore — including commercial, industrial and residential sites in Jurong, Tuas, central Singapore and beyond — for both commercial and interior renovation works.",
+  },
+  {
+    question: "Does CHAMS Construction handle both commercial and residential projects?",
+    answer:
+      "Yes. CHAMS handles heavy-duty commercial and industrial works for factories, warehouses and large sites, as well as interior fit-out and renovation for offices, retail units, HDB flats and landed homes.",
+  },
+  {
+    question: "Has CHAMS Construction worked with Singapore government bodies?",
+    answer:
+      "Yes. CHAMS has delivered civil, infrastructure and commercial M&E works for Singapore statutory boards including JTC, LTA, HDB and PUB, as well as semiconductor fabrication facilities.",
+  },
+  {
+    question: "How do I get a quote from CHAMS Construction?",
+    answer:
+      "Send your project brief through the contact page or call +65 8117 4399. CHAMS responds with scope, schedule and a team sized to deliver your commercial or interior construction project in Singapore.",
+  },
+];
+
 // Featured client projects (Singapore statutory boards + semiconductor fabs)
 // Used by /our-work page for the immersive scroll showcase.
 export const featuredProjects: {
@@ -1103,7 +1139,7 @@ export const aboutCommitment = [
 
 export const aboutBullets = [
   "Singapore-based construction and engineering services company",
-  "Comprehensive solutions in redecoration, waterproofing, electrical, and structural works",
+  "Comprehensive solutions in redecoration, waterproofing, blasting & painting, electrical, and structural works",
   "Committed to excellence in safety, quality, and compliance",
   "Long-term partnerships built on trust, transparency, and performance",
 ];

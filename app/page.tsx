@@ -1,14 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { homeFaqs } from "./data";
 
 export const metadata: Metadata = {
   title:
-    "CHAMS Construction — Singapore Commercial, Interior & Renovation Works",
+    "Construction Company in Singapore — Commercial & Interior Works | CHAMS",
   description:
-    "Singapore construction partner trusted by JTC, LTA, HDB, PUB and semiconductor fabs. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. BCA-registered, ISO 45001:2018 certified.",
+    "CHAMS Construction is a BCA-registered, ISO 45001:2018 certified construction company in Singapore. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. Trusted by JTC, LTA, HDB and PUB.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
+};
+
+const SITE_URL = "https://chamsconstruction.com";
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  mainEntity: homeFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE_URL}/#webpage`,
+  url: SITE_URL + "/",
+  name: "Construction Company in Singapore — Commercial & Interior Works | CHAMS",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#organization` },
+  primaryImageOfPage: `${SITE_URL}/og-image.png`,
+  inLanguage: "en-SG",
 };
 import {
   AboutBlock,
@@ -40,6 +66,14 @@ function GoldCta() {
 export default function Home() {
   return (
     <PageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <HomeHero />
 
       {/* 01 — About */}
@@ -124,6 +158,39 @@ export default function Home() {
           </div>
           <div className="mt-14">
             <WorkGrid />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ — long-tail SEO + FAQPage rich results */}
+      <section className="px-5 py-16 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid gap-12 lg:grid-cols-[0.55fr_1fr] lg:items-start">
+            <Reveal>
+              <p className="eyebrow">/ 05 — FAQ</p>
+              <h2 className="mt-5 font-display text-4xl leading-[1.04] md:text-7xl md:leading-[0.98]">
+                Common<br />
+                <span className="font-display-italic text-[var(--gold-deep)]">questions.</span>
+              </h2>
+              <p className="mt-7 max-w-md text-lg leading-8 text-[var(--ash)]">
+                What clients ask before starting a commercial or interior construction
+                project with CHAMS in Singapore.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <dl className="border-t border-[color:var(--line)]">
+                {homeFaqs.map((f) => (
+                  <div key={f.question} className="border-b border-[color:var(--line-soft)] py-6">
+                    <dt className="font-display text-lg leading-snug text-[var(--navy)] md:text-xl">
+                      {f.question}
+                    </dt>
+                    <dd className="mt-3 max-w-2xl text-base leading-7 text-[var(--ash)]">
+                      {f.answer}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
           </div>
         </div>
       </section>

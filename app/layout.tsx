@@ -96,13 +96,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-  },
+  // Favicons are served via the Next file convention from app/icon0.png
+  // (32×32), app/icon1.png (512×512) and app/apple-icon.png (180×180).
+  // Do NOT add a metadata `icons` block — it overrides the file convention
+  // and previously pointed at /icon.png in public root (404, no favicon).
   applicationName: "CHAMS Construction",
   referrer: "origin-when-cross-origin",
   formatDetection: {
@@ -144,7 +141,50 @@ const organizationLd = {
     postalCode: "648363",
     addressCountry: "SG",
   },
-  areaServed: { "@type": "Country", name: "Singapore" },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 1.3486,
+    longitude: 103.697,
+  },
+  hasMap: "https://www.google.com/maps/search/?api=1&query=238+Westwood+Avenue+Singapore+648363",
+  areaServed: [
+    { "@type": "Country", name: "Singapore" },
+    { "@type": "City", name: "Singapore" },
+    { "@type": "AdministrativeArea", name: "Jurong" },
+    { "@type": "AdministrativeArea", name: "Tuas" },
+    { "@type": "AdministrativeArea", name: "Central Singapore" },
+  ],
+  priceRange: "$$",
+  currenciesAccepted: "SGD",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Construction Services",
+    itemListElement: [
+      "Commercial Blasting & Painting",
+      "Industrial Waterproofing",
+      "Epoxy Flooring",
+      "Electrical Services",
+      "Plumbing & Sanitary Works",
+      "Interior Fit-Out & Renovation",
+      "Cement Plastering",
+      "Carpentry & Joinery",
+      "Glass & Aluminium Works",
+      "Flooring Installation",
+      "Demolition & Reinstatement",
+      "Manpower Supply",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name, areaServed: "Singapore" },
+    })),
+  },
   hasCredential: [
     {
       "@type": "EducationalOccupationalCredential",
@@ -189,15 +229,15 @@ export default function RootLayout({
   return (
     <html lang="en-SG" className={`${inter.variable} ${interBody.variable} ${mono.variable}`}>
       <head>
-        {/* Organization + WebSite JSON-LD */}
-        <Script
-          id="ld-organization"
+        {/* Organization + WebSite JSON-LD — plain <script> so the markup is
+            server-rendered in the initial HTML (not injected after hydration),
+            which is the reliable way for Google and AI crawlers to read it. */}
+        <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
-        <Script
-          id="ld-website"
+        <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
