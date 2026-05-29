@@ -738,7 +738,7 @@ export function HomeHero() {
           mobile the CTAs stack and anchor to the bottom (justify-between);
           on desktop they group under the text (justify-center). */}
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1400px] flex-col justify-between px-5 pt-28 pb-12 md:justify-center md:px-10 md:pb-24 md:pt-36">
-        {/* Top — eyebrow, headline, description */}
+        {/* Top — eyebrow + headline */}
         <div className="max-w-2xl lg:max-w-3xl">
           <Reveal>
             <div className="flex items-center gap-3">
@@ -748,7 +748,7 @@ export function HomeHero() {
               </p>
             </div>
           </Reveal>
-          <h1 className="mt-6 md:mt-7">
+          <h1 className="mt-7 md:mt-8">
             <SplitHeadline
               as="span"
               text="Luxury Execution"
@@ -761,12 +761,6 @@ export function HomeHero() {
               className="font-display-italic mt-1 block text-[clamp(2.1rem,7vw,5rem)] leading-[1.05] tracking-tight text-[var(--gold-deep)]"
             />
           </h1>
-          <Reveal delay={0.5}>
-            <p className="mt-6 max-w-md text-base leading-7 text-[var(--ash)] md:mt-7 md:text-lg md:leading-8">
-              End-to-end construction and maintenance solutions for businesses that demand
-              reliability, efficiency, and exceptional workmanship.
-            </p>
-          </Reveal>
         </div>
 
         {/* CTAs — stacked at the bottom on mobile, inline under text on desktop */}
