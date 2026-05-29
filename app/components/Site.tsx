@@ -25,6 +25,7 @@ import {
   roleOptions,
   workItems,
   stats,
+  heroStats,
   principles,
   featuredServices,
   sectorCards,
@@ -334,31 +335,50 @@ export function VerifiedBadges({
 }) {
   const isHero = variant === "hero";
 
-  // Hero: logos only, no capsule chrome
+  // Hero: frosted white chips so the transparent cert logos stay legible
+  // on the dark hero background. Each chip links out to the issuing body.
   if (isHero) {
     return (
-      <div className={`flex flex-wrap items-center gap-x-5 gap-y-3 ${className}`}>
-        <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-[var(--navy)]/70">
+      <div className={`flex flex-wrap items-center gap-x-3 gap-y-3 ${className}`}>
+        <span className="font-mono text-[10px] tracking-[0.28em] uppercase text-white/65">
           / Certified
         </span>
-        <img
-          src="/verified-badges/BCA-certication.png"
-          alt="Building and Construction Authority — Registered Contractor"
-          width={1920}
-          height={1920}
-          loading="lazy"
-          decoding="async"
-          className="block h-18 w-auto md:h-25"
-        />
-        <img
-          src="/verified-badges/tve-certification.png"
-          alt="TVE-CERT ISO 45001:2018 — Occupational Health & Safety"
-          width={1920}
-          height={1920}
-          loading="lazy"
-          decoding="async"
-          className="block h-18 w-auto md:h-25"
-        />
+        <a
+          href="https://www.bca.gov.sg"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Building and Construction Authority Singapore — registered contractor"
+          title="Registered with the Building and Construction Authority (BCA) Singapore"
+          className="inline-flex items-center rounded-full bg-white/92 px-3 py-1.5 ring-1 ring-white/40 backdrop-blur transition hover:bg-white"
+        >
+          <img
+            src="/verified-badges/BCA-certication.png"
+            alt="Building and Construction Authority — Registered Contractor"
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+            className="block h-9 w-auto md:h-10"
+          />
+        </a>
+        <a
+          href="https://www.iso.org/iso-45001-occupational-health-and-safety.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="ISO 45001:2018 Occupational Health and Safety standard"
+          title="Certified to ISO 45001:2018 — Occupational Health & Safety"
+          className="inline-flex items-center rounded-full bg-white/92 px-3 py-1.5 ring-1 ring-white/40 backdrop-blur transition hover:bg-white"
+        >
+          <img
+            src="/verified-badges/tve-certification.png"
+            alt="TVE-CERT ISO 45001:2018 — Occupational Health & Safety"
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+            className="block h-9 w-auto md:h-10"
+          />
+        </a>
       </div>
     );
   }
@@ -689,95 +709,114 @@ export function CtaImage() {
 export function HomeHero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const fade = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.12]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
 
   return (
-    <>
-      <section
-        ref={ref}
-        className="relative isolate -mt-24 overflow-hidden md:-mt-28"
-        style={{ minHeight: "100svh" }}
-      >
-        {/* Solid fallback */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#f5e9c8] via-[#caa46a] to-[#2a1d10]" />
+    <section
+      ref={ref}
+      className="relative isolate -mt-24 overflow-hidden bg-[var(--navy-deep)] md:-mt-28"
+      style={{ minHeight: "100svh" }}
+    >
+      {/* Background image — full-bleed and clearly visible */}
+      <motion.div
+        style={{ y: bgY, scale: bgScale, backgroundImage: "url('/hero.png')" }}
+        className="absolute inset-0 z-0 bg-cover bg-[position:62%_center] bg-no-repeat"
+      />
 
-        {/* Background image */}
-        <motion.div
-          style={{ y: bgY, backgroundImage: "url('/hero.png')" }}
-          className="absolute inset-0 z-[1] bg-cover bg-[position:30%_center] bg-no-repeat md:bg-[position:65%_center]"
-        />
+      {/* Cinematic gradients — anchor text/legibility without washing the image.
+          Bottom-up navy fade + left-side scrim, leaving the upper-right vivid. */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[var(--navy-deep)] via-[var(--navy-deep)]/35 to-[var(--navy-deep)]/10" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[var(--navy-deep)] via-[var(--navy-deep)]/72 to-transparent md:via-[var(--navy-deep)]/60" />
+      {/* Warm gold glow, top-left, for depth */}
+      <div className="pointer-events-none absolute -left-32 top-10 z-[1] h-[420px] w-[420px] rounded-full bg-[var(--gold)]/12 blur-[120px]" />
 
-        {/* Gradient overlays for readability */}
-        <motion.div
-          style={{ opacity: fade }}
-          className="absolute inset-0 z-[2] bg-gradient-to-b from-white/60 via-white/20 to-black/40"
-        />
-        <div className="absolute inset-0 z-[2] bg-gradient-to-r from-white/65 via-white/15 to-transparent md:from-white/75 md:via-white/25" />
-
-        {/* Foreground content */}
-        <div className="relative z-10 flex min-h-[100svh] flex-col">
-          <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-28 pb-20 md:px-10 md:pt-36 md:pb-24">
-            <div className="max-w-2xl lg:max-w-3xl">
-              <Reveal>
-                <div className="flex items-center gap-3">
-                  <span className="size-2 shrink-0 rounded-full bg-[var(--gold)]" />
-                  <p className="eyebrow text-[10px] text-[var(--navy)]/85 md:text-[11px]">
-                    Singapore · Construction partner
-                  </p>
-                </div>
-              </Reveal>
-              <h1 className="mt-5 md:mt-6">
-                <SplitHeadline
-                  as="span"
-                  text="Commercial & Interior"
-                  className="font-display block text-[clamp(1.85rem,6.5vw,4.5rem)] leading-[1.02] tracking-tight text-[var(--navy)]"
-                />
-                <SplitHeadline
-                  as="span"
-                  text="Construction in Singapore."
-                  delay={0.25}
-                  className="font-display-italic mt-1 block text-[clamp(1.85rem,6.5vw,4.5rem)] leading-[1.02] tracking-tight text-[var(--gold-deep)]"
-                />
-              </h1>
-              <Reveal delay={0.5}>
-                <p className="mt-6 max-w-lg text-sm leading-6 text-[var(--navy)]/90 md:mt-7 md:text-lg md:leading-7">
-                  Building landmarks with modern expertise — from industrial blasting, painting and
-                  M&amp;E to interior fit-out, plastering and renovation. Built with discipline,
-                  delivered on schedule across Singapore.
+      {/* Foreground */}
+      <motion.div style={{ y: contentY }} className="relative z-10 flex min-h-[100svh] flex-col">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-28 pb-16 md:px-10 md:pt-36 md:pb-20">
+          <div className="max-w-2xl lg:max-w-3xl">
+            <Reveal>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-[var(--gold)]" />
+                <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/75 md:text-[11px]">
+                  Singapore · BCA-registered contractor
                 </p>
-              </Reveal>
-              <Reveal delay={0.7}>
-                <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-8">
-                  <ButtonLink href="/contact-us">Get in touch</ButtonLink>
-                  <Link
-                    href="/services"
-                    className="group inline-flex items-center justify-center gap-3 rounded-full border border-[var(--navy)]/40 bg-white/40 px-6 py-3 text-[12px] tracking-[0.2em] uppercase text-[var(--navy)] backdrop-blur transition hover:border-[var(--navy)] hover:bg-[var(--navy)] hover:text-white sm:justify-start"
-                  >
-                    Explore services
-                    <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-              </Reveal>
-              <Reveal delay={0.85}>
-                <VerifiedBadges variant="hero" className="mt-7 md:mt-8" />
-              </Reveal>
-            </div>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="grid size-10 place-items-center rounded-full border border-white/40 bg-white/10 backdrop-blur"
-            >
-              <ChevronDown size={16} className="text-white" />
-            </motion.div>
+              </div>
+            </Reveal>
+            <h1 className="mt-6 md:mt-7">
+              <SplitHeadline
+                as="span"
+                text="Commercial & Interior"
+                className="font-display block text-[clamp(2.1rem,7vw,5rem)] leading-[1.0] tracking-tight text-white"
+              />
+              <SplitHeadline
+                as="span"
+                text="Construction in Singapore."
+                delay={0.25}
+                className="font-display-italic mt-1 block text-[clamp(2.1rem,7vw,5rem)] leading-[1.0] tracking-tight text-[var(--gold-warm)]"
+              />
+            </h1>
+            <Reveal delay={0.5}>
+              <p className="mt-6 max-w-xl text-sm leading-6 text-white/80 md:mt-7 md:text-lg md:leading-8">
+                Building landmarks with modern expertise — from industrial blasting, painting and
+                M&amp;E to interior fit-out, plastering and renovation. Built with discipline,
+                delivered on schedule across Singapore.
+              </p>
+            </Reveal>
+            <Reveal delay={0.7}>
+              <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-9">
+                <Link
+                  href="/contact-us"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[var(--gold)] px-7 py-3.5 text-[12px] font-medium tracking-[0.2em] uppercase text-[var(--navy)] btn-shadow transition hover:bg-[var(--gold-warm)] sm:justify-start"
+                >
+                  Start a project
+                  <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-[12px] tracking-[0.2em] uppercase text-white backdrop-blur transition hover:border-white hover:bg-white hover:text-[var(--navy)] sm:justify-start"
+                >
+                  Explore services
+                  <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.85}>
+              <VerifiedBadges variant="hero" className="mt-8 md:mt-9" />
+            </Reveal>
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Capability strip — anchors the hero with substance */}
+        <Reveal delay={0.9}>
+          <div className="relative z-10 border-t border-white/15 bg-[var(--navy-deep)]/40 backdrop-blur-sm">
+            <div className="mx-auto grid max-w-[1400px] grid-cols-2 md:grid-cols-4">
+              {heroStats.map(([k, v], i) => (
+                <div
+                  key={k}
+                  className={`px-5 py-5 md:px-8 md:py-7 ${
+                    i % 2 === 1 ? "border-l border-white/10" : ""
+                  } ${i >= 2 ? "border-t border-white/10 md:border-t-0" : ""} ${
+                    i > 0 ? "md:border-l md:border-white/10" : ""
+                  }`}
+                >
+                  <p className="font-mono text-[9px] tracking-[0.3em] uppercase text-[var(--gold)]/90">
+                    / {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-2 font-display text-lg leading-tight text-white md:text-2xl">
+                    {k}
+                  </p>
+                  <p className="mt-1 text-[11px] leading-snug text-white/55 md:text-xs">
+                    {v}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </motion.div>
+    </section>
   );
 }
 

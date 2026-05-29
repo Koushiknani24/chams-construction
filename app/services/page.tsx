@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "../seo";
 import {
   ButtonLink,
   PageHero,
@@ -7,12 +8,14 @@ import {
   ServicesIndexShowcase,
 } from "../components/Site";
 
+const DESC =
+  "CHAMS Construction services: commercial blasting, painting, electrical, plumbing, manpower supply; interior fit-out, plastering, electrical, painting and plumbing — all delivered with site discipline across Singapore.";
+
 export const metadata: Metadata = {
   title: "Services — Commercial & Interior Construction Singapore",
-  description:
-    "CHAMS Construction services: commercial blasting, painting, electrical, plumbing, manpower supply; interior fit-out, plastering, electrical, painting and plumbing — all delivered with site discipline across Singapore.",
+  description: DESC,
   alternates: { canonical: "/services" },
-  openGraph: { url: "/services", title: "Services — CHAMS Construction" },
+  openGraph: pageOpenGraph({ url: "/services", title: "Services — CHAMS Construction", description: DESC }),
 };
 
 export default function ServicesPage() {

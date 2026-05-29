@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "../seo";
 import {
   ButtonLink,
   OurWorkShowcase,
@@ -7,12 +8,14 @@ import {
   Reveal,
 } from "../components/Site";
 
+const DESC =
+  "Selected CHAMS Construction case studies — JTC industrial infrastructure, LTA roads and bridges, HDB estate works, PUB water and drainage, and semiconductor fab maintenance across Singapore.";
+
 export const metadata: Metadata = {
   title: "Our Work — JTC · LTA · HDB · PUB · Semiconductor Projects in Singapore",
-  description:
-    "Selected CHAMS Construction case studies — JTC industrial infrastructure, LTA roads and bridges, HDB estate works, PUB water and drainage, and semiconductor fab maintenance across Singapore.",
+  description: DESC,
   alternates: { canonical: "/our-work" },
-  openGraph: { url: "/our-work", title: "Our Work — CHAMS Construction" },
+  openGraph: pageOpenGraph({ url: "/our-work", title: "Our Work — CHAMS Construction", description: DESC }),
 };
 
 export default function OurWorkPage() {

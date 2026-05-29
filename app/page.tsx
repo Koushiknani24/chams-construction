@@ -2,17 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { homeFaqs } from "./data";
+import { pageOpenGraph } from "./seo";
+
+const HOME_TITLE =
+  "Construction Company in Singapore — Commercial & Interior Works | CHAMS";
+const HOME_DESC =
+  "CHAMS Construction is a BCA-registered, ISO 45001:2018 certified construction company in Singapore. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. Trusted by JTC, LTA, HDB and PUB.";
 
 export const metadata: Metadata = {
-  title:
-    "Construction Company in Singapore — Commercial & Interior Works | CHAMS",
-  description:
-    "CHAMS Construction is a BCA-registered, ISO 45001:2018 certified construction company in Singapore. Commercial blasting, painting, M&E, plumbing, interior fit-out, plastering, renovation and skilled manpower supply. Trusted by JTC, LTA, HDB and PUB.",
+  title: HOME_TITLE,
+  description: HOME_DESC,
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  openGraph: pageOpenGraph({ url: "/", title: HOME_TITLE, description: HOME_DESC }),
 };
 
 const SITE_URL = "https://chamsconstruction.com";
+// Build-time freshness signal — refreshes on every deploy.
+const MODIFIED = new Date().toISOString();
 
 const faqLd = {
   "@context": "https://schema.org",
@@ -30,11 +36,14 @@ const webPageLd = {
   "@type": "WebPage",
   "@id": `${SITE_URL}/#webpage`,
   url: SITE_URL + "/",
-  name: "Construction Company in Singapore — Commercial & Interior Works | CHAMS",
+  name: HOME_TITLE,
+  description: HOME_DESC,
   isPartOf: { "@id": `${SITE_URL}/#website` },
   about: { "@id": `${SITE_URL}/#organization` },
   primaryImageOfPage: `${SITE_URL}/og-image.png`,
   inLanguage: "en-SG",
+  datePublished: "2025-05-13",
+  dateModified: MODIFIED,
 };
 import {
   AboutBlock,

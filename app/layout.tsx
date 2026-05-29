@@ -219,6 +219,9 @@ const websiteLd = {
   name: "CHAMS Construction",
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: "en-SG",
+  // Build-time freshness signal — refreshes on every deploy so AI crawlers
+  // see the site as current. Present on every page via the root layout.
+  dateModified: new Date().toISOString(),
 };
 
 export default function RootLayout({

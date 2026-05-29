@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "../seo";
 import {
   AboutCommitment,
   AboutIntro,
@@ -13,12 +14,15 @@ import {
   StatBlock,
 } from "../components/Site";
 
+const TITLE = "About CHAMS Construction — Singapore Construction & Renovation Partner";
+const DESC =
+  "CHAMS Construction Pte. Ltd. is a Singapore-based construction company delivering commercial, civil, M&E and interior renovation works. BCA-registered, ISO 45001:2018 certified. Discipline, safety, and on-time handover.";
+
 export const metadata: Metadata = {
-  title: "About CHAMS Construction — Singapore Construction & Renovation Partner",
-  description:
-    "CHAMS Construction Pte. Ltd. is a Singapore-based construction company delivering commercial, civil, M&E and interior renovation works. BCA-registered, ISO 45001:2018 certified. Discipline, safety, and on-time handover.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about", title: "About CHAMS Construction" },
+  openGraph: pageOpenGraph({ url: "/about", title: "About CHAMS Construction", description: DESC }),
 };
 
 export default function AboutPage() {
