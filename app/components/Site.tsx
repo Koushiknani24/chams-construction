@@ -146,14 +146,14 @@ export function Header() {
         }`}
       >
         <div className="border-b border-[color:var(--line-soft)]">
-          <div className="mx-auto flex h-28 max-w-[1400px] items-center justify-between px-5 md:h-32 md:px-10">
+          <div className="mx-auto flex h-24 max-w-[1400px] items-center justify-between px-5 md:h-28 md:px-10">
             <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/logo-header.png"
                 alt="Chams Construction"
                 width={983}
                 height={473}
-                className="h-[5.75rem] w-auto object-contain md:h-[6.75rem] lg:h-[7rem]"
+                className="h-[4.25rem] w-auto object-contain md:h-[5.25rem] lg:h-[5.75rem]"
                 priority
               />
             </Link>
@@ -271,7 +271,7 @@ export function Header() {
       </motion.header>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-      <div className="h-28 md:h-32" />
+      <div className="h-24 md:h-28" />
     </>
   );
 }
@@ -714,7 +714,7 @@ export function HomeHero() {
   return (
     <section
       ref={ref}
-      className="relative isolate -mt-28 overflow-hidden bg-[var(--paper)] md:-mt-32"
+      className="relative isolate -mt-24 overflow-hidden bg-[var(--paper)] md:-mt-28"
       style={{ minHeight: "100svh" }}
     >
       {/* Background image — fills the viewport (object-cover). Portrait crop
