@@ -146,14 +146,14 @@ export function Header() {
         }`}
       >
         <div className="border-b border-[color:var(--line-soft)]">
-          <div className="mx-auto flex h-24 max-w-[1400px] items-center justify-between px-5 md:h-28 md:px-10">
+          <div className="mx-auto flex h-28 max-w-[1400px] items-center justify-between px-5 md:h-32 md:px-10">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/logo.png"
+                src="/logo-header.png"
                 alt="Chams Construction"
-                width={260}
-                height={174}
-                className="h-27 w-auto object-contain md:h-30"
+                width={983}
+                height={473}
+                className="h-[5.75rem] w-auto object-contain md:h-[6.75rem] lg:h-[7rem]"
                 priority
               />
             </Link>
@@ -271,7 +271,7 @@ export function Header() {
       </motion.header>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-      <div className="h-24 md:h-28" />
+      <div className="h-28 md:h-32" />
     </>
   );
 }
@@ -714,7 +714,7 @@ export function HomeHero() {
   return (
     <section
       ref={ref}
-      className="relative isolate -mt-24 overflow-hidden bg-[var(--paper)] md:-mt-28"
+      className="relative isolate -mt-28 overflow-hidden bg-[var(--paper)] md:-mt-32"
       style={{ minHeight: "100svh" }}
     >
       {/* Background image — fills the viewport (object-cover). Portrait crop
@@ -784,26 +784,23 @@ export function HomeHero() {
             </div>
           </Reveal>
           <Reveal delay={0.85}>
-            <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[var(--ash)] md:mt-7">
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-4 md:mt-7">
               <span className="font-mono tracking-[0.22em] uppercase text-[var(--navy)]/55">/ Certified</span>
-              <a
-                href="https://www.bca.gov.sg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-[var(--gold-deep)]/40 underline-offset-4 transition hover:text-[var(--navy)]"
-              >
-                BCA-registered contractor
-              </a>
-              <span aria-hidden>·</span>
-              <a
-                href="https://www.iso.org/iso-45001-occupational-health-and-safety.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-[var(--gold-deep)]/40 underline-offset-4 transition hover:text-[var(--navy)]"
-              >
-                ISO 45001:2018 certified
-              </a>
-            </p>
+              <Image
+                src="/verified-badges/BCA-certication.png"
+                alt="BCA registered contractor certification"
+                width={1536}
+                height={1024}
+                className="h-16 w-auto object-contain drop-shadow-[0_2px_10px_rgba(26,38,84,0.16)] sm:h-[4.5rem] md:h-20 lg:h-24"
+              />
+              <Image
+                src="/verified-badges/tve-certification.png"
+                alt="TVE-CERT ISO 45001:2018 certification"
+                width={1536}
+                height={1024}
+                className="h-16 w-auto object-contain drop-shadow-[0_2px_10px_rgba(26,38,84,0.16)] sm:h-[4.5rem] md:h-20 lg:h-24"
+              />
+            </div>
           </Reveal>
         </div>
       </div>
@@ -832,7 +829,7 @@ export function AboutBlock() {
           <p className="mt-7 max-w-xl text-lg leading-8 text-[var(--ash)]">
             CHAMS Construction Pte. Ltd. is a Singapore-based construction and engineering
             services company, providing comprehensive solutions in redecoration, waterproofing,
-            electrical, and structural works — delivered with discipline, on schedule, and
+            blasting &amp; painting, electrical, and structural works — delivered with discipline, on schedule, and
             built to last.
           </p>
         </Reveal>
