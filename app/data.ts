@@ -839,6 +839,19 @@ export const servicesTree: ServiceCategoryNode[] = [
   },
 ];
 
+const commercialServiceOrder = [
+  "blasting-painting",
+  "electrical",
+  "plumbing-sanitary",
+  "manpower-supply",
+];
+
+servicesTree
+  .find((category) => category.slug === "commercial")
+  ?.subservices.sort(
+    (a, b) => commercialServiceOrder.indexOf(a.slug) - commercialServiceOrder.indexOf(b.slug),
+  );
+
 export const featuredServices = [
   "Composite Decking",
   "Epoxy Flooring",
