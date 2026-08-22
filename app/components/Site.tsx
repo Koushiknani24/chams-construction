@@ -381,6 +381,24 @@ export function VerifiedBadges({
             className="block h-16 w-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)] md:h-20"
           />
         </a>
+        <a
+          href="https://www.tal.sg/wshc/programmes"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="bizSAFE STAR certification"
+          title="bizSAFE STAR certification"
+          className="transition hover:opacity-80"
+        >
+          <img
+            src="/verified-badges/bizsafe-star-transparent.png"
+            alt="bizSAFE STAR certification"
+            width={600}
+            height={600}
+            loading="lazy"
+            decoding="async"
+            className="block h-16 w-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)] md:h-20"
+          />
+        </a>
       </div>
     );
   }
@@ -417,6 +435,20 @@ export function VerifiedBadges({
         />
         <span className="hidden text-[10px] leading-tight tracking-wide text-[var(--navy)]/70 sm:inline-block md:text-[11px]">
           ISO<br />45001:2018
+        </span>
+      </div>
+      <div className="flex items-center gap-3 rounded-full border border-[color:var(--line)] bg-[var(--paper)] px-3 py-2 md:px-4">
+        <img
+          src="/verified-badges/bizsafe-star-transparent.png"
+          alt="bizSAFE STAR certification"
+          width={600}
+          height={600}
+          loading="lazy"
+          decoding="async"
+          className="block h-7 w-auto md:h-8"
+        />
+        <span className="hidden text-[10px] leading-tight tracking-wide text-[var(--navy)]/70 sm:inline-block md:text-[11px]">
+          bizSAFE<br />STAR
         </span>
       </div>
     </div>
@@ -798,6 +830,13 @@ export function HomeHero() {
                 alt="TVE-CERT ISO 45001:2018 certification"
                 width={1536}
                 height={1024}
+                className="h-16 w-auto object-contain drop-shadow-[0_2px_10px_rgba(26,38,84,0.16)] sm:h-[4.5rem] md:h-20 lg:h-24"
+              />
+              <Image
+                src="/verified-badges/bizsafe-star-transparent.png"
+                alt="bizSAFE STAR certification"
+                width={600}
+                height={600}
                 className="h-16 w-auto object-contain drop-shadow-[0_2px_10px_rgba(26,38,84,0.16)] sm:h-[4.5rem] md:h-20 lg:h-24"
               />
             </div>
